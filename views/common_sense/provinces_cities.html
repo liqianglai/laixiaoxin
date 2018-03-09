@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <style>
+      .mui-content {
+        padding-bottom: 22px;
+        background-color: #E1E0C7;
+      }
+      
+      .table {
+        display: flex;
+        flex-flow: column;
+      }
+      
+      .t-header {
+        position: fixed;
+        top: 45px;
+        width: 100%;
+        margin-bottom: 3px;
+        box-shadow: 0 3px 5px #19537D;
+        background-color: #F0EFE2;
+        color: #19537D;
+        font-weight: 700;
+      }
+      
+      .t-body {
+        margin-top: 45px;
+      }
+      
+      .t-row {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      
+      .t-row-even {
+        background-color: #F0EFE2;
+      }
+      
+      .t-header .t-row {
+        height: 40px;
+      }
+      
+      .t-cell {
+        display: flex;
+        justify-content: center;
+        margin: 10px auto;
+      }
+      
+      .t-cell1 {
+        flex-grow: 1;
+      }
+      
+      .t-cell2 {
+        flex-basis: 20%;
+      }
+      
+      .t-cell3 {
+        flex-basis: 30%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="mui-bar mui-bar-nav">
+      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <h1 class="mui-title">省市简称</h1>
+    </header>
+    <section class="mui-content">
+      <div class="table t-header">
+        <div class="t-row">
+          <div class="t-cell t-cell1">省市名称</div>
+          <div class="t-cell t-cell2">简称</div>
+          <div class="t-cell t-cell3">行政中心</div>
+        </div>
+      </div>
+      <div class="table t-body" id="t-body">
+
+      </div>
+    </section>
+    <script src="../../js/mui.min.js"></script>
+    <script type="text/javascript">
+      mui.init();
+      mui.plusReady(plusReady);
+
+      const provinces = [{
+          name: '北京市',
+          short_name: '京',
+          capital: '北京'
+        },
+        {
+          name: '天津市',
+          short_name: '津',
+          capital: '天津'
+        },
+        {
+          name: '上海市',
+          short_name: '沪',
+          capital: '上海'
+        },
+        {
+          name: '重庆市',
+          short_name: '渝',
+          capital: '重庆'
+        },
+        {
+          name: '内蒙古自治区',
+          short_name: '蒙',
+          capital: '呼和浩特'
+        },
+        {
+          name: '新疆维吾尔自治区',
+          short_name: '新',
+          capital: '乌鲁木齐'
+        },
+        {
+          name: '西藏自治区',
+          short_name: '藏',
+          capital: '拉萨'
+        },
+        {
+          name: '宁夏回族自治区',
+          short_name: '宁',
+          capital: '银川'
+        },
+        {
+          name: '广西壮族自治区',
+          short_name: '桂',
+          capital: '南宁'
+        },
+        {
+          name: '香港特别行政区',
+          short_name: '港',
+          capital: '香港'
+        },
+        {
+          name: '澳门特别行政区',
+          short_name: '澳',
+          capital: '澳门'
+        },
+        {
+          name: '黑龙江省',
+          short_name: '黑',
+          capital: '哈尔滨'
+        },
+        {
+          name: '吉林省',
+          short_name: '吉',
+          capital: '长春'
+        },
+        {
+          name: '辽宁省',
+          short_name: '辽',
+          capital: '沈阳'
+        },
+        {
+          name: '河北省',
+          short_name: '冀',
+          capital: '石家庄'
+        },
+        {
+          name: '山西省',
+          short_name: '晋',
+          capital: '太原'
+        },
+        {
+          name: '青海省',
+          short_name: '青',
+          capital: '西宁'
+        },
+        {
+          name: '山东省',
+          short_name: '鲁',
+          capital: '济南'
+        },
+        {
+          name: '河南省',
+          short_name: '豫',
+          capital: '郑州'
+        },
+        {
+          name: '江苏省',
+          short_name: '苏',
+          capital: '南京'
+        },
+        {
+          name: '安徽省',
+          short_name: '皖',
+          capital: '合肥'
+        },
+        {
+          name: '浙江省',
+          short_name: '浙',
+          capital: '杭州'
+        },
+        {
+          name: '福建省',
+          short_name: '闽',
+          capital: '福州'
+        },
+        {
+          name: '江西省',
+          short_name: '赣',
+          capital: '南昌'
+        },
+        {
+          name: '湖南省',
+          short_name: '湘',
+          capital: '长沙'
+        },
+        {
+          name: '湖北省',
+          short_name: '鄂',
+          capital: '武汉'
+        },
+        {
+          name: '广东省',
+          short_name: '粤',
+          capital: '广州'
+        },
+        {
+          name: '台湾省',
+          short_name: '台',
+          capital: '台北'
+        },
+        {
+          name: '海南省',
+          short_name: '琼',
+          capital: '海口'
+        },
+        {
+          name: '甘肃省',
+          short_name: '甘/陇',
+          capital: '兰州'
+        },
+        {
+          name: '陕西省',
+          short_name: '陕/秦',
+          capital: '西安'
+        },
+        {
+          name: '四川省',
+          short_name: '川/蜀',
+          capital: '成都'
+        },
+        {
+          name: '贵州省',
+          short_name: '贵/黔',
+          capital: '贵阳'
+        },
+        {
+          name: '云南省',
+          short_name: '云/滇',
+          capital: '昆明'
+        }
+      ];
+
+      function plusReady() {
+        const tBody = document.getElementById('t-body');
+        var html = '';
+        provinces.forEach(function(item, index) {
+          html += '<div class="t-row ' + (index % 2 !== 0 ? '' : 't-row-even') + '">' +
+            '<div class="t-cell t-cell1">' + item.name + '</div>' +
+            '<div class="t-cell t-cell2">' + item.short_name + '</div>' +
+            '<div class="t-cell t-cell3">' + item.capital + '</div>' +
+            '</div>';
+        });
+        tBody.innerHTML = html;
+      }
+    </script>
+  </body>
+
+</html>

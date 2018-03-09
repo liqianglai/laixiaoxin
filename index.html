@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="css/mui.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header class="mui-bar mui-bar-nav">
+      <h1 class="mui-title">胖新胎教专用</h1>
+    </header>
+    <section class="mui-content">
+      <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+          <a href="/views/menu/common_sense.html" class="mui-navigate-right">常识</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="/views/menu/poetry_category.html" class="mui-navigate-right">诗词歌赋</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="/views/menu/article_category.html" class="mui-navigate-right">文章</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="" class="mui-navigate-right">故事</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="" class="mui-navigate-right">三字经</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="" class="mui-navigate-right">弟子规</a>
+        </li>
+        <li class="mui-table-view-cell">
+          <a href="" class="mui-navigate-right">千字文</a>
+        </li>
+      </ul>
+    </section>
+    <script src="js/mui.min.js"></script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript">
+      mui.init({
+        preloadPages: [{
+          url: '/views/menu/common_sense.html',
+          id: '/views/menu/common_sense',
+        }, {
+          url: '/views/menu/poetry_category.html',
+          id: '/views/menu/poetry_category'
+        }, {
+          url: '/views/menu/article_category.html',
+          id: '/views/menu/article_category',
+        }]
+      });
+      mui.plusReady(plusReady);
+
+      function plusReady() {
+        mui('ul').on('tap', 'li', function() {
+          const href = this.querySelector('a').getAttribute('href');
+          href && mui.openWindow(href, removeExt(href));
+        });
+      }
+    </script>
+  </body>
+
+</html>

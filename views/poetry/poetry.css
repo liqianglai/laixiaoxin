@@ -1,0 +1,27 @@
+body {
+  background-color: #fff;
+}
+
+.mui-content {
+  background-color: #fff;
+}
+
+.author {
+  margin-bottom: 16px;
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #666;
+}
+
+.content {
+  margin: 5px 10px;
+  padding-bottom: 22px;
+}
+
+.content p {
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+}

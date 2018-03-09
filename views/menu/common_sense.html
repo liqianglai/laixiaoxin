@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header class="mui-bar mui-bar-nav">
+      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <h1 class="mui-title">常识</h1>
+    </header>
+    <section class="mui-content">
+      <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+          <a href="/views/common_sense/provinces_cities.html" class="mui-navigate-right">省市简称</a>
+        </li>
+      </ul>
+    </section>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script type="text/javascript">
+      mui.init({
+        preloadPages: [{
+          url: '/views/menu/common_sense.html',
+          id: '/views/menu/common_sense',
+        }]
+      });
+      mui.plusReady(plusReady);
+
+      function plusReady() {
+        mui('ul').on('tap', 'li', function() {
+          const href = this.querySelector('a').getAttribute('href');
+          href && mui.openWindow(href, removeExt(href));
+        });
+      }
+    </script>
+  </body>
+
+</html>
