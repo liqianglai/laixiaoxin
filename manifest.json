@@ -7,7 +7,7 @@
   "id": "H5C274EDD",/*应用的标识，创建应用时自动生成，勿手动修改*/
   "name": "laixiaoxin",/*应用名称，程序桌面图标名称*/
   "version": {
-    "name": "1.0.1",/*应用版本名称*/
+    "name": "1.1.2",/*应用版本名称*/
     "code": "83"
   },
   "description": "",/*应用描述信息*/
@@ -180,7 +180,10 @@
 					"views/menu/article.html",
 					"views/menu/poetry.html",
 					"views/menu/article_category.html",
-					"views/menu/poetry_category.html"
+					"views/menu/poetry_category.html",
+					"views/menu/story_category.html",
+					"views/sanzijing.html",
+					"views/menu/twister_list.html"
 				],
 				"priority": 0
 			},
@@ -230,7 +233,8 @@
 					"views/article/the_sea_beyond_the_mountains.html",
 					"views/article/article01.html",
 					"views/article/article02.html",
-					"views/article/article_detail.html"
+					"views/article/article_detail.html",
+					"views/detail/article_detail.html"
 				],
 				"priority": 0
 			},
@@ -244,7 +248,10 @@
 			"views/menu/poetry_list.html": {
 				"resources": [],
 				"refer": [
-					"views/poetry/poetry_detail.html"
+					"views/poetry/poetry_detail.html",
+					"views/article/article_detail.html",
+					"views/detail/article_detail.html",
+					"views/detail/poetry_detail.html"
 				],
 				"priority": 0
 			},
@@ -252,6 +259,27 @@
 				"resources": [],
 				"refer": [
 					"views/menu/poetry_list.html"
+				],
+				"priority": 0
+			},
+			"views/menu/story_category.html": {
+				"resources": [],
+				"refer": [
+					"views/menu/story_list.html"
+				],
+				"priority": 0
+			},
+			"views/menu/story_list.html": {
+				"resources": [],
+				"refer": [
+					"views/article/article_detail.html"
+				],
+				"priority": 0
+			},
+			"views/menu/twister_list.html": {
+				"resources": [],
+				"refer": [
+					"views/detail/twister_detail.html"
 				],
 				"priority": 0
 			}

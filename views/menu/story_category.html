@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>诗词歌赋</title>
+    <title>故事分类</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link href="../../css/mui.min.css" rel="stylesheet" />
   </head>
@@ -11,7 +11,7 @@
   <body>
     <header class="mui-bar mui-bar-nav">
       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-      <h1 class="mui-title">诗词歌赋</h1>
+      <h1 class="mui-title">故事分类</h1>
     </header>
     <section class="mui-content">
       <ul class="mui-table-view mui-grid-view mui-grid-9" id="container"></ul>
@@ -19,7 +19,7 @@
 
     <script src="../../js/mui.min.js"></script>
     <script src="../../js/common.js"></script>
-    <script src="../../data/data_poetry.js"></script>
+    <script src="../../data/data_story.js"></script>
     <script type="text/javascript">
       mui.init();
       mui.plusReady(plusReady);
@@ -35,8 +35,8 @@
         if(li) {
           var key = li.dataset['key'];
           mui.openWindow({
-            url: 'poetry_list.html',
-            id: '/views/menu/poetry_list',
+            url: 'story_list.html',
+            id: '/views/menu/story_list',
             extras: {
               key: key
             }
@@ -51,7 +51,7 @@
           var item = data.category[key];
           _html += '<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" data-key="' + item.key + '">' +
             '<a href="#">' +
-            '<span class="' + item.icon + '"></span>' +
+            '<span class="' + item.icon + '"><span class="mui-badge mui-badge-success mui-badge-inverted">' + (Object.keys(item.data).length) + '</span></span>' +
             '<div class="mui-media-body">' + item.name + '</div>' +
             '</a>' +
             '</li>';

@@ -1,9 +1,10 @@
 body {
-  background-color: #fff;
+  background-color: #E1E0C7;
+  line-height: 1.5;
 }
 
 .mui-content {
-  background-color: #fff;
+  background-color: #F0EFE2;
 }
 
 .author {
@@ -24,4 +25,18 @@ body {
   text-indent: 2em;
   font-size: 16px;
   color: #444;
+}
+
+.more{
+  padding: 10px;
+  color: #0F0F0F;
+}
+
+.more .name{
+  font-weight: 700;
+}
+
+.more .content{
+  margin: 0;
+  text-indent: 0;
 }

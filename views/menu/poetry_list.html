@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>精选文章</title>
+    <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link href="../../css/mui.min.css" rel="stylesheet" />
   </head>
@@ -11,10 +11,15 @@
   <body>
     <header class="mui-bar mui-bar-nav">
       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-      <h1 class="mui-title">精选文章</h1>
+      <h1 class="mui-title" id="title"></h1>
     </header>
     <section class="mui-content">
-      <ul class="mui-table-view" id="container"></ul>
+      <div class="mui-card">
+        <ul class="mui-table-view" id="container">
+
+        </ul>
+      </div>
+
     </section>
     <script src="../../js/mui.min.js"></script>
     <script src="../../js/common.js"></script>
@@ -32,14 +37,24 @@
         // 监听事件
         mui('ul').on('tap', 'li', function(ev) {
           var a = getElementByAttribute(ev.target, 'href');
-          if(a) {
-            var key = a.dataset['key'];
-            var keyArr = key.split('__');
+          if(!a) return;
+          var key = a.dataset['key'];
+          if(!key) return;
+          var item = data.category[key.split('_')[0]].data[key.split('__')[0]].data[key];
+          if(key.indexOf('classical') >= 0) {
             mui.openWindow({
-              url: '../poetry/poetry_detail.html',
-              id: '/views/poetry/poetry_detail',
+              url: '../detail/article_detail.html',
+              id: '/views/detail/article_detail',
               extras: {
-                item: data.category[keyArr[0]].data[key]
+                item: item
+              }
+            });
+          } else {
+            mui.openWindow({
+              url: '../detail/poetry_detail.html',
+              id: '/views/detail/poetry_detail',
+              extras: {
+                item: item
               }
             });
           }
@@ -47,12 +62,27 @@
       }
 
       function render(key) {
-        var _html = '';
+        document.getElementById('title').innerText = data.category[key].name;
+        var _html = '',
+          _className = 'mui-active';
         for(_key in data.category[key].data) {
           var item = data.category[key].data[_key];
-          _html += '<li class="mui-table-view-cell">' +
-            '<a href="#" class="mui-navigate-right" data-key="' + item.key + '">' + item.name + '</a>' +
+          var _innerHtml = '';
+          if(Object.keys(item.data).length > 0) {
+            for(_innerKey in item.data) {
+              var _innerItem = item.data[_innerKey];
+              _innerHtml += '<li class="mui-table-view-cell">' +
+                '<a href="#" class="mui-navigate-right" data-key="' + _innerItem.key + '">' + _innerItem.name + '</a>' +
+                '</li>';
+            }
+          }
+          _html += '<li class="mui-table-view-cell mui-collapse ' + _className + '">' +
+            '<a class="mui-navigate-right" href="#">' + item.name + '<span class="mui-badge mui-badge-success">' + (Object.keys(item.data).length) + '</span></a>' +
+            '<div class="mui-collapse-content">' +
+            '<ul class="mui-table-view">' + _innerHtml + '</ul>' +
+            '</div>' +
             '</li>';
+          _className = '';
         }
         document.getElementById('container').innerHTML = _html;
       }

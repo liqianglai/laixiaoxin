@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>精选文章</title>
+    <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link href="../../css/mui.min.css" rel="stylesheet" />
   </head>
@@ -11,23 +11,22 @@
   <body>
     <header class="mui-bar mui-bar-nav">
       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-      <h1 class="mui-title">精选文章</h1>
+      <h1 class="mui-title">绕口令</h1>
     </header>
     <section class="mui-content">
       <ul class="mui-table-view" id="container"></ul>
     </section>
     <script src="../../js/mui.min.js"></script>
     <script src="../../js/common.js"></script>
-    <script src="../../data/data_article.js"></script>
+    <script src="../../data/data_twister.js"></script>
     <script type="text/javascript">
       mui.init();
       mui.plusReady(plusReady);
 
       function plusReady() {
-        var self = plus.webview.currentWebview();
-        var key = self.key;
+
         // 渲染数据
-        render(key);
+        render();
 
         // 监听事件
         mui('ul').on('tap', 'li', function(ev) {
@@ -36,20 +35,20 @@
             var key = a.dataset['key'];
             var keyArr = key.split('__');
             mui.openWindow({
-              url: '../detail/article_detail.html',
-              id: '/views/detail/article_detail',
+              url: '../detail/twister_detail.html',
+              id: '/views/detail/twister_detail',
               extras: {
-                item: data.category[keyArr[0]].data[key]
+                item: data[key]
               }
             });
           }
         });
       }
 
-      function render(key) {
+      function render() {
         var _html = '';
-        for(_key in data.category[key].data) {
-          var item = data.category[key].data[_key];
+        for(_key in data) {
+          var item = data[_key];
           _html += '<li class="mui-table-view-cell">' +
             '<a href="#" class="mui-navigate-right" data-key="' + item.key + '">' + item.name + '</a>' +
             '</li>';

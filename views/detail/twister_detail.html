@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../../css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="poetry.css" />
+  </head>
+
+  <body>
+    <header class="mui-bar mui-bar-nav">
+      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+      <h1 class="mui-title" id="title"></h1>
+    </header>
+    <section class="mui-content" id="container"></section>
+    <script src="../../js/mui.min.js"></script>
+    <script type="text/javascript">
+      mui.init();
+      mui.plusReady(plusReady);
+
+      function plusReady() {
+        var self = plus.webview.currentWebview();
+        var item = self.item;
+        // 渲染数据
+        render(item);
+      }
+
+      function render(item) {
+        var _content = '<section class="content">';
+        item.data.forEach(function(_item) {
+          _content += '<p>' + _item.paragraph + '</p>';
+        });
+        _content += '</section>';
+        document.getElementById('title').innerText = item.name;
+        document.getElementById('container').innerHTML = _content;
+      }
+    </script>
+  </body>
+
+</html>
